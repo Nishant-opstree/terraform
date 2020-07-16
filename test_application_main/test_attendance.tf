@@ -221,7 +221,7 @@ module "test_attendance_asp_up" {
   asg_policy_scaling_adjustment = 1
   asg_policy_adjustment_type    = "ChangeInCapacity"
   asg_policy_cooldown           = 300
-  asg_name                      = test_module.test_attendance_as.asg.name
+  asg_name                      = module.test_attendance_as.asg.name
 }
 
 module "test_attendance_cloud_watch_up" {
