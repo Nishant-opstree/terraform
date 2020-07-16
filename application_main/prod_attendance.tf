@@ -203,7 +203,6 @@ module "attendance_lc" {
 
 module "attendance_as" {
   source                   = "./modules/auto_scalling"
-  placement_group_strategy = "cluster"
   asg_name                 = "attendance"
   asg_max_size             = 2
   asg_min_size             = 1
@@ -277,7 +276,6 @@ module "mysql_lc" {
 
 module "mysql_asg" {
   source                   = "./modules/auto_scalling"
-  placement_group_strategy = "cluster"
   asg_name                 = "mysql"
   asg_max_size             = 1
   asg_min_size             = 1

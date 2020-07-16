@@ -203,7 +203,6 @@ module "test_frontend_lc" {
 
 module "test_frontend_asg" {
   source                   = "./modules/auto_scalling"
-  placement_group_strategy = "cluster"
   asg_name                 = "test_frontend"
   asg_max_size             = 1
   asg_min_size             = 1

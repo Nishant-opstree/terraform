@@ -1,7 +1,3 @@
-resource "aws_placement_group" "webapp_placement_group" {
-  name     = "webapp_placement_group"
-  strategy = var.placement_group_strategy
-}
 resource "aws_autoscaling_group" "webapp_asg" {
   name                      = var.asg_name
   max_size                  = var.asg_max_size
@@ -10,7 +6,6 @@ resource "aws_autoscaling_group" "webapp_asg" {
   health_check_type         = var.asg_health_check_type
   desired_capacity          = var.asg_desired_capacity  
   force_delete              = var.asg_force_delete  
-  placement_group           = ""
   launch_configuration      = var.asg_launch_configuration
   vpc_zone_identifier       = var.asg_vpc_zone_identifier
   tag {

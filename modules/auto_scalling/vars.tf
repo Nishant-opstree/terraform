@@ -1,7 +1,3 @@
-variable "placement_group_strategy" {
- default = "cluster"
-}
-
 variable "asg_name" {
  default = "webapp_asg"
 }

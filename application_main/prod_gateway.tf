@@ -204,7 +204,6 @@ module "gateway_lc" {
 
 module "gateway_asg" {
   source                   = "./modules/auto_scalling"
-  placement_group_strategy = "cluster"
   asg_name                 = "gateway"
   asg_max_size             = 1
   asg_min_size             = 1

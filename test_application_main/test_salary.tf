@@ -202,7 +202,6 @@ module "test_salary_lc" {
 
 module "test_salary_as" {
   source                   = "./modules/auto_scalling"
-  placement_group_strategy = "cluster"
   asg_name                 = "test_salary"
   asg_max_size             = 2
   asg_min_size             = 1
@@ -276,7 +275,6 @@ module "test_elasticsearch_lc" {
 
 module "test_elasticsearch_asg" {
   source                   = "./modules/auto_scalling"
-  placement_group_strategy = "cluster"
   asg_name                 = "test_elasticsearch"
   asg_max_size             = 1
   asg_min_size             = 1
