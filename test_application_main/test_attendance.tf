@@ -224,19 +224,7 @@ module "test_attendance_asp_up" {
   asg_name                      = module.test_attendance_as.asg.name
 }
 
-module "test_attendance_cloud_watch_up" {
-  source                      = "./modules/cloudwatch_metric"
-  alarm_name                  = "attendance_up_alarm"
-  alarm_comparission_operator = "GreaterThanOrEqualToThreshold"
-  alarm_evaluation_periods    = "4"
-  alarm_metric_name           = "CPUUtilization"
-  alarm_namespace             = "AWS/EC2"
-  alarm_period                = "120"
-  alarm_statistic             = "Average"
-  alarm_threshold             = "80"
-  alarm_alarm_actions         = [module.test_attendance_asp_up.asg_policy.arn]
-  alarm_asg_name              = module.test_attendance_as.asg.name
-}
+
 
 module "test_attendance_asp_down" {
   source                        = "./modules/auto_scalling_policy"
@@ -248,20 +236,6 @@ module "test_attendance_asp_down" {
   
 }
 
-module "test_attendance_cloud_watch_down" {
-  source                      = "./modules/cloudwatch_metric"
-  alarm_name                  = "attendance_down_alarm"
-  alarm_comparission_operator = "LessThanLowerThreshold"
-  alarm_evaluation_periods    = "4"
-  alarm_metric_name           = "CPUUtilization"
-  alarm_namespace             = "AWS/EC2"
-  alarm_period                = "120"
-  alarm_statistic             = "Average"
-  alarm_threshold             = "80"
-  alarm_alarm_actions         = [module.test_attendance_asp_down.asg_policy.arn]
-  alarm_asg_name              = module.test_attendance_as.asg.name
-  
-}
 
 module "test_mysql_lc" {
   source            = "./modules/launch_configuration"
