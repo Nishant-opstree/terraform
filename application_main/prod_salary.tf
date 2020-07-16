@@ -203,7 +203,7 @@ module "salary_lc" {
 module "salary_as" {
   source                   = "./modules/auto_scalling"
   asg_name                 = "salary"
-  asg_max_size             = 2
+  asg_max_size             = 1
   asg_min_size             = 1
   asg_health_grace_period  = 300
   asg_health_check_type    = "EC2"
@@ -224,19 +224,6 @@ module "salary_asp_up" {
   asg_name                      = module.salary_as.asg.name
 }
 
-module "salary_cloud_watch_up" {
-  source                      = "./modules/cloudwatch_metric"
-  alarm_name                  = "salary_up_alarm"
-  alarm_comparission_operator = "GreaterThanOrEqualToThreshold"
-  alarm_evaluation_periods    = "4"
-  alarm_metric_name           = "CPUUtilization"
-  alarm_namespace             = "AWS/EC2"
-  alarm_period                = "120"
-  alarm_statistic             = "Average"
-  alarm_threshold             = "80"
-  alarm_alarm_actions         = [module.salary_asp_up.asg_policy.arn]
-  alarm_asg_name              = module.salary_as.asg.name
-}
 
 module "salary_asp_down" {
   source                        = "./modules/auto_scalling_policy"
@@ -245,21 +232,6 @@ module "salary_asp_down" {
   asg_policy_adjustment_type    = "ChangeInCapacity"
   asg_policy_cooldown           = 300
   asg_name                      = module.salary_as.asg.name
-  
-}
-
-module "salary_cloud_watch_down" {
-  source                      = "./modules/cloudwatch_metric"
-  alarm_name                  = "salary_down_alarm"
-  alarm_comparission_operator = "LessThanLowerThreshold"
-  alarm_evaluation_periods    = "4"
-  alarm_metric_name           = "CPUUtilization"
-  alarm_namespace             = "AWS/EC2"
-  alarm_period                = "120"
-  alarm_statistic             = "Average"
-  alarm_threshold             = "80"
-  alarm_alarm_actions         = [module.salary_asp_down.asg_policy.arn]
-  alarm_asg_name              = module.salary_as.asg.name
   
 }
 

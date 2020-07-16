@@ -203,7 +203,7 @@ module "test_employee_lc" {
 module "test_employee_as" {
   source                   = "./modules/auto_scalling"
   asg_name                 = "test_employee"
-  asg_max_size             = 2
+  asg_max_size             = 1
   asg_min_size             = 1
   asg_health_grace_period  = 300
   asg_health_check_type    = "EC2"
@@ -224,20 +224,6 @@ module "test_employee_asp_up" {
   asg_name                      = module.test_employee_as.asg.name
 }
 
-module "test_employee_cloud_watch_up" {
-  source                      = "./modules/cloudwatch_metric"
-  alarm_name                  = "employee_up_alarm"
-  alarm_comparission_operator = "GreaterThanOrEqualToThreshold"
-  alarm_evaluation_periods    = "4"
-  alarm_metric_name           = "CPUUtilization"
-  alarm_namespace             = "AWS/EC2"
-  alarm_period                = "120"
-  alarm_statistic             = "Average"
-  alarm_threshold             = "80"
-  alarm_alarm_actions         = [module.test_employee_asp_up.asg_policy.arn]
-  alarm_asg_name              = module.test_employee_as.asg.name
-}
-
 module "test_employee_asp_down" {
   source                        = "./modules/auto_scalling_policy"
   asg_policy_name               = "employee_policy_down"
@@ -248,20 +234,6 @@ module "test_employee_asp_down" {
   
 }
 
-module "test_employee_cloud_watch_down" {
-  source                      = "./modules/cloudwatch_metric"
-  alarm_name                  = "employee_down_alarm"
-  alarm_comparission_operator = "LessThanLowerThreshold"
-  alarm_evaluation_periods    = "4"
-  alarm_metric_name           = "CPUUtilization"
-  alarm_namespace             = "AWS/EC2"
-  alarm_period                = "120"
-  alarm_statistic             = "Average"
-  alarm_threshold             = "80"
-  alarm_alarm_actions         = [module.test_employee_asp_down.asg_policy.arn]
-  alarm_asg_name              = module.test_employee_as.asg.name
-  
-}
 
 module "test_elasticsearch_lc" {
   source            = "./modules/launch_configuration"
