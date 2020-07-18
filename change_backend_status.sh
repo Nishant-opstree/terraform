@@ -8,14 +8,14 @@ then
 	terraform apply -auto-approve
 	sudo rm terraform_backend_setup.tf
 	sed -i "/s3_backend_configured/s/false/true/" backend_status
-	backend_data="""terraform {\n
-    backend "s3"  {\n
-        bucket = "nishant-terraform-state-bucket-test"\n
-	key            = "global/s3/terraform.tfstate"\n
-        region         = "ap-south-2"\n
-    }\n
-}\n
-	"""
+	backend_data='''terraform {
+    backend "s3"  {
+        bucket = "nishant-terraform-state-bucket-test-4"
+		key    = "global/s3/terraform.tfstate"
+        region = "ap-south-2"
+    }
+}
+	'''
 	echo -e "$backend_data" | cat - main.tf > temp && mv temp main.tf
 	sudo rm -r .terraform/
 	sudo rm terraform.*
