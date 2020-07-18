@@ -6,7 +6,6 @@ if [ "$backend_status" == false ]
 then
 	terraform init
 	terraform apply -auto-approve
-	sudo rm terraform_backend_setup.tf
 	sed -i "/s3_backend_configured/s/false/true/" backend_status
 	backend_data='''terraform {
     backend "s3"  {
