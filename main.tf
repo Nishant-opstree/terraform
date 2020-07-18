@@ -1,11 +1,3 @@
-terraform {
-    backend "s3"  {
-        bucket = "nishant-terraform-state-bucket-test-4"
-		key    = "global/s3/terraform.tfstate"
-        region = "ap-south-2"
-    }
-}
-	
 provider "aws" {
   profile    = "default"
   region     = "ap-south-1"
