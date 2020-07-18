@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = "nishant-terraform-state-bucket-test-2" 
+  bucket = "nishant-terraform-state-bucket-test-3" 
   versioning {
     enabled = true
   }  
