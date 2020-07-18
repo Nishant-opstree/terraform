@@ -1,5 +1,5 @@
-resource "aws_s3_bucket" "terraform_state" {
-  bucket = "nishant-terraform-state-bucket-test-5" 
+resource "aws_s3_bucket" "test_terraform_state" {
+  bucket = "nishant-terraform-state-bucket-testenv" 
   versioning {
     enabled = true
   }  
@@ -12,7 +12,7 @@ resource "aws_s3_bucket" "terraform_state" {
   }
 }
 
-resource "aws_dynamodb_table" "terraform_locks" {
+resource "aws_dynamodb_table" "test_terraform_locks" {
   name         = "nishant-terraform-state-bucket-locks-test"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "LockID"  

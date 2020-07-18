@@ -9,7 +9,7 @@ then
 	sed -i "/s3_backend_configured/s/false/true/" backend_status
 	backend_data='''terraform {
     backend "s3"  {
-        bucket = "nishant-terraform-state-bucket-test-env"
+        bucket = "nishant-terraform-state-bucket-testenv"
 		key    = "global/s3/terraform.tfstate"
         region = "ap-south-1"
     }
