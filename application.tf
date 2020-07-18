@@ -1,6 +1,6 @@
 module "test_attendance_security_group" {
   source              = "./modules/security_group"
-  security_group_name = "webapp"
+  security_group_name = "test_attendance_webapp"
   ingress_cidr_tcp    = "0.0.0.0/0"
   vpc_Id              = module.vpc.webapp_vpc_Id 
   ingress_cidr_ssh    = "0.0.0.0/0"
@@ -73,7 +73,7 @@ module "test_attendance_asp_down" {
 
 module "test_mysql_security_group" {
   source              = "./modules/security_group"
-  security_group_name = "webapp"
+  security_group_name = "test_mysql_webapp"
   ingress_cidr_tcp    = "0.0.0.0/0"
   vpc_Id              = module.vpc.webapp_vpc_Id 
   ingress_cidr_ssh    = "0.0.0.0/0"
