@@ -10,15 +10,15 @@ then
 	sed -i "/s3_backend_configured/s/false/true/" backend_status
 	backend_data='''terraform {
     backend "s3"  {
-        bucket = "nishant-terraform-state-bucket-test-5"
+        bucket = "nishant-terraform-state-bucket-test-6"
 		key    = "global/s3/terraform.tfstate"
         region = "ap-south-1"
     }
 }
 	'''
 	echo -e "$backend_data" | cat - main.tf > temp && mv temp main.tf
-	sudo rm -r .terraform/
-	sudo rm terraform.*
+	echo ".terraform/*" > .gitignore
+	echo "terraform.*" >> .gitignore
 	git add .
 	git commit -m "upload"
 	git push origin test_master
