@@ -1,7 +1,3 @@
-provider "aws" {
-  profile    = "default"
-  region     = "ap-south-1"
-}
 resource "aws_s3_bucket" "terraform_state" {
   bucket = "nishant-terraform-state-bucket-test" 
   versioning {
