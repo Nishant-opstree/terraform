@@ -49,14 +49,14 @@ module "igw" {
 module "nat_a" {
   source          = "./modules/nat"
   subnet_Id       = module.subnet_public_a.webapp_subnet_Id
-  elastic_Ip_name = "eip-01"
+  elastic_Ip_name = "eip-03"
   nat_tag_name    = "test_webapp-nat-a"
 }
 
 module "nat_b" {
   source          = "./modules/nat"
   subnet_Id       = module.subnet_public_b.webapp_subnet_Id
-  elastic_Ip_name = "eip-02"
+  elastic_Ip_name = "eip-04"
   nat_tag_name    = "test_webapp-nat-b"
 }
 
