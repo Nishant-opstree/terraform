@@ -17,8 +17,10 @@ then
 }\n
 	"""
 	echo -e "$backend_data" | cat - main.tf > temp && mv temp main.tf
-	rm terraform.*
+	sudo rm -r .terraform/
+	sudo rm terraform.*
 	git add .
+	git commit -m "upload"
 	git push origin test_master
 
 fi
