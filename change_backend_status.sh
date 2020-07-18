@@ -2,7 +2,7 @@
 
 infrastructure_branch="$1"
 backend_status=`cat backend_status | awk '/s3_backend_configured/{print $2}'`
-if [ backend_status == false ]
+if [ "$backend_status" == false ]
 then
 	terraform init
 	terraform apply -auto-approve
@@ -22,5 +22,6 @@ then
 	git push origin test_master
 
 fi
-
+git checkout "$infrastructure_branch"
+git checkout test_master
 git merge "$infrastructure_branch"
