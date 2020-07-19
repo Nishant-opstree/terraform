@@ -31,7 +31,7 @@ module "test_elasticsearch_lc" {
   source            = "./modules/launch_configuration"
   amis              = "ami-02d55cb47e83a99a0"
   key_name          = "ec2-linux-public-01"
-  security_group_Id = [ module.test_employee_security_group.webapp_sec_grp_Id] 
+  security_group_Id = [ module.test_elasticsearch_security_group.webapp_sec_grp_Id] 
   instance_Type     = "t2.micro"
   lc_name_prefix    =  "test_elasticsearch" 
   
